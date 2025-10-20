@@ -44,11 +44,11 @@ if (is_file("{$configuration['updatefolder']}oneload")) {
     require_once("{$configuration['updatefolder']}oneload");
 }
 
-$return_val = mwexec("fetch -o {$configuration['updatefolder']}version.txt https://raw.github.com/crestAT/nas4free-syncthing/master/syncthing/version.txt", false);
+$return_val = mwexec("fetch -o {$configuration['updatefolder']}version.txt https://raw.github.com/mstroud/nas4free-syncthing/master/syncthing/version.txt", false);
 if ($return_val == 0) {
     $server_version = exec("cat {$configuration['updatefolder']}version.txt");
     if ($server_version != $configuration['version']) { $savemsg = sprintf(gettext("New extension version %s available, push '%s' button to install the new version!"), $server_version, gettext("Update Extension")); }
-    mwexec("fetch -o {$configuration['rootfolder']}release_notes.txt https://raw.github.com/crestAT/nas4free-syncthing/master/syncthing/release_notes.txt", false);
+    mwexec("fetch -o {$configuration['rootfolder']}release_notes.txt https://raw.github.com/mstroud/nas4free-syncthing/master/syncthing/release_notes.txt", false);
 }
 else { $server_version = gettext("Unable to retrieve version from server!"); }
 
@@ -126,7 +126,7 @@ if (isset($_POST['ext_remove']) && $_POST['ext_remove']) {
 if (isset($_POST['ext_update']) && $_POST['ext_update']) {
     $install_dir = dirname($configuration['rootfolder']);
 // download installer
-    $return_val = mwexec("fetch -vo {$install_dir}/stg-install.php https://raw.github.com/crestAT/nas4free-syncthing/master/stg-install.php", false);
+    $return_val = mwexec("fetch -vo {$install_dir}/stg-install.php https://raw.github.com/mstroud/nas4free-syncthing/master/stg-install.php", false);
     if ($return_val == 0) {
         require_once("{$install_dir}/stg-install.php"); 
         header("Refresh:8");;

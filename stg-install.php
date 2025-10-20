@@ -25,7 +25,7 @@
     (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
     SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-$version = "v0.2.3";		// extension version
+$version = "v0.3.0";		// extension version
 $v = "v0.14.49";			// application version
 $appname = "Syncthing";
 $config_name = strtolower($appname);
@@ -52,7 +52,8 @@ $release = explode("-", exec("uname -r"));
 if ($release[0] >= 9.3) $verify_hostname = "--no-verify-hostname";
 else $verify_hostname = "";
 
-$return_val = mwexec("fetch {$verify_hostname} -vo {$install_dir}master.zip 'https://github.com/crestAT/nas4free-syncthing/releases/download/{$version}/syncthing-{$version_striped}.zip'", true);
+$github_url = "https://github.com/mstroud/nas4free-syncthing";
+$return_val = mwexec("fetch {$verify_hostname} -vo {$install_dir}master.zip '{$github_url}/releases/download/{$version}/syncthing-{$version_striped}.zip'", true);
 if ($return_val == 0) {
     $return_val = mwexec("tar -xf {$install_dir}master.zip -C {$install_dir} --exclude='.git*' --strip-components 1", true);
     if ($return_val == 0) {

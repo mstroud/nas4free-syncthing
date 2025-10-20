@@ -159,7 +159,7 @@ if (!function_exists('ext_check_version'))   {
     function ext_check_version($test_filename, $extension_name, $current_version, $button_name) {
 		global $config;
 		if (!is_file($test_filename) || filemtime($test_filename) < time() - 86400) {	// test if file exists or is older than 24 hours
-			$return_val = mwexec("fetch -o {$test_filename} https://raw.github.com/crestAT/nas4free-{$extension_name}/master/{$extension_name}/version.txt", false);
+			$return_val = mwexec("fetch -o {$test_filename} https://raw.github.com/mstroud/nas4free-{$extension_name}/master/{$extension_name}/version.txt", false);
 			if ($return_val == 0) {
 			    $server_version = exec("cat {$test_filename}");
 			    if ($server_version != $current_version) return sprintf(gettext("New extension version %s available, push '%s' button to install the new version!"), $server_version, $button_name);
